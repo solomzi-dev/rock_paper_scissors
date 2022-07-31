@@ -24,6 +24,28 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-const playerSelection = "rock";
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection))
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;    
+    for(let i = 0; i < 5; i++) {
+        let playerInput = prompt('Enter your choice.');
+        if(playRound(playerInput, getComputerChoice()).includes('win')) {
+            console.log('Player wins');
+            playerScore++;
+        } else if(playRound(playerInput, getComputerChoice()).includes('lose')) {
+            console.log('Computer wins');
+            computerScore++;
+        } else if(playRound(playerInput, getComputerChoice()).includes('tie')) {
+            console.log(`It's a tie`);
+        } else {
+            console.log('Invalid input');
+        }
+    }
+    if(playerScore > computerScore) {
+        alert(`Player wins by ${playerScore} - ${computerScore}`)
+    } else if(computerScore > playerScore) {
+        alert(`Computer wins by ${computerScore} - ${playerScore}`)
+    } else {
+        alert(`It's a tie`);
+    }
+}
